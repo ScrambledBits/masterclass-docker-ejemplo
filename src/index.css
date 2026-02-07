@@ -1,0 +1,58 @@
+:root {
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #00ff41;
+  background-color: #0d0d0d;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #00ff41;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #00cc33;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 4em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+button {
+  border-radius: 4px;
+  border: 1px solid #00ff41;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  color: #00ff41;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+button:hover {
+  background-color: #00ff41;
+  color: #0d0d0d;
+}
+button:focus,
+button:focus-visible {
+  outline: 2px solid #00ff41;
+}
