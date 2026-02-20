@@ -1,4 +1,4 @@
-FROM node:25-alpine AS builder
+FROM node:25-alpine AS constructor
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     CYPRESS_INSTALL_BINARY=0
@@ -6,17 +6,16 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN /usr/local/bin/npm ci
 
 COPY . .
 
-RUN npm run build
+RUN /usr/local/bin/npm run build
 
 
 FROM nginx:stable-alpine-slim
 
-RUN rm -rf /usr/share/nginx/html/*
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=constructor /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
