@@ -37,3 +37,26 @@ jobs:
                   docker tag "$REGISTRY/$REPOSITORY:$IMAGE_TAG" "$REGISTRY/$REPOSITORY:latest"
                   docker push "$REGISTRY/$REPOSITORY:$IMAGE_TAG"
                   docker push "$REGISTRY/$REPOSITORY:latest"
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Configure AWS Credentials 2
+              uses: aws-actions/configure-aws-credentials@v6.0.0
+              with:
+                  aws-region: us-east-1
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+            - name: get caller identity2
+              run: |
+                  aws sts get-caller-identity
+            - name: Download task definition
+              run: |
+                  aws ecs describe-task-definition --task-definition bootcamperu --query taskDefinition > task-definition.json
+            - name: Deploy to Amazon ECS
+              uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+              with:
+                  task-definition: task-definition.json
+                  service: bootcamperu-landing-page
+                  cluster: test-bootcamperu
+                  wait-for-service-stability: true
