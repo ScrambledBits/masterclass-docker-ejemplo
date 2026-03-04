@@ -52,16 +52,6 @@ jobs:
             - name: get caller identity2
               run: |
                   aws sts get-caller-identity
-            - name: Download task definition
+            - name: Update service
               run: |
-                  aws ecs describe-task-definition --task-definition bootcamperu --query taskDefinition --region ${{ env.AWS_REGION }} > task-definition.json
-            - name: Display task definition file
-              run: |
-                  cat task-definition.json
-            # - name: Deploy to Amazon ECS
-            #   uses: aws-actions/amazon-ecs-deploy-task-definition@v2
-            #   with:
-            #       task-definition: task-definition.json
-            #       service: bootcamperu-landing-page
-            #       cluster: test-bootcamperu
-            #       wait-for-service-stability: true
+                  aws ecs update-service --cluster test-bootcamperu --service bootcamperu-service-kejfq6rq --task-definition arn:aws:ecs:us-east-1:301820662531:task-definition/bootcamperu:4

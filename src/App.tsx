@@ -16,7 +16,7 @@ function App() {
           <div className="text-content">
             <p className="prompt">$ echo "Bienvenidos a Bootcamperu"</p>
             <h1 className="hero-text">Bienvenidos a Bootcamperu</h1>
-            <p className="sub-text">Transformando apasionados en desarrolladores expertos.</p>
+            <p className="sub-text">Transformando apasionados en desarrolladores expertos mediante ECS.</p>
           </div>
           <div className="image-content">
             <div className="hero-viz-container">
@@ -25,7 +25,7 @@ function App() {
           </div>
         </div>
       </header>
-      
+
       <main className="carousel-section">
         <Case />
       </main>
