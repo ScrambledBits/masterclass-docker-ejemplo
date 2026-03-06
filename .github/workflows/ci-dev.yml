@@ -44,10 +44,11 @@ jobs:
               with:
                   image-ref: "$REGISTRY/$REPOSITORY:$IMAGE_TAG"
                   format: "table"
-                  exit-code: 0
                   ignore-unfixed: true
                   vuln-type: "os,library"
-                  severity: "CRITICAL,HIGH"
+                  severity: "CRITICAL"
+                  scan-type: "image"
+                  cache: true
 
             - name: Push docker image to Amazon ECR
               env:
