@@ -39,6 +39,8 @@ jobs:
 
             - name: Run Trivy vulnerability scanner
               uses: aquasecurity/trivy-action@0.33.1
+              env:
+                  ACTIONS_STEP_DEBUG: true
               with:
                   image-ref: "$REGISTRY/$REPOSITORY:$IMAGE_TAG"
                   format: "table"
